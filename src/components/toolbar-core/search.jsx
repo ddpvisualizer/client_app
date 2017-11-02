@@ -16,7 +16,7 @@ class Search extends React.Component {
 
     render() {
         return (
-            <label style={styles.container} key="container">
+            <label style={styles.search} key="container">
                 <FontAwesome name="search" style={styles.searchIcon} key="searchIcon" />
                 <input style={styles.textInput}
                     key="textInput"
@@ -35,26 +35,29 @@ class Search extends React.Component {
 }
 
 const styles = {
-    container: {
+    search: {
         display: 'block',
         borderWidth: 2,
         borderStyle: 'solid',
         borderColor: 'lightgrey',
         borderRadius: 100,
         transition: 'border-color 0.5s ease',
-        padding: '5px 8px',
+        padding: '5px 10px',
         textAlign: 'left',
+        maxWidth: '100%',
         ':focus': {
             borderColor: 'lightblue'
         }
     },
     searchIcon: {
-        fontSize: 20
+        fontSize: 20,
+        position: 'absolute'
     },
     textInput: {
-        width: 200,
         fontSize: 15,
-        marginLeft: 10,
+        width: '100%',
+        paddingLeft: 25,
+        paddingTop: 3,
         border: 0,
         color: 'grey',
         ':focus': {

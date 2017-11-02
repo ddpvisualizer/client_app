@@ -4,9 +4,17 @@ import Toolbar from '../components/toolbar.jsx'
 import ToolbarActions from './toolbar.actions.js'
 import store from '../store.js'
 
-const mapStateToProps = state => ({
-    searchValue: state.toolbar.searchQuery,
-    onSearchChange: (searchQuery) => store.dispatch(ToolbarActions.updateSearch(searchQuery))
+const mapStateToProps = ({toolbar}) => ({
+    searchQuery: toolbar.searchQuery,
+    selectedCounty: toolbar.selectedCounty,
+    favoredSelected: toolbar.favoredSelected,
+    counties: toolbar.counties,
+    showMax: toolbar.showMax,
+    onSearchChange: searchQuery => store.dispatch(ToolbarActions.updateSearch(searchQuery)),
+    onAllCountiesSelected: () => store.dispatch(ToolbarActions.selectAllCounties()),
+    onFavoredCountiesSelected: () => store.dispatch(ToolbarActions.selectFavoredConties()),
+    onCountySelected: county => store.dispatch(ToolbarActions.selectCounty(county)),
+    onShowMaxChange: max => store.dispatch(ToolbarActions.showMax(max))
 })
 
 export default connect(mapStateToProps)(Toolbar);

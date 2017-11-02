@@ -5,6 +5,7 @@ import ToolbarActions from './toolbar.actions.js'
 import store from '../store.js'
 
 const mapStateToProps = ({toolbar}) => ({
+    loading: toolbar.loading,
     searchQuery: toolbar.searchQuery,
     selectedCounty: toolbar.selectedCounty,
     favoredSelected: toolbar.favoredSelected,

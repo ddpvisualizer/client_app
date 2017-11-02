@@ -5,9 +5,12 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 import FontAwesome from 'react-fontawesome'
 
+import Loader from '../common-core/loader.jsx'
+
 class TabList extends React.Component {
 
     static propTypes = {
+        loading: PropTypes.bool,
         tabs: PropTypes.arrayOf(PropTypes.string),
         items: PropTypes.arrayOf(PropTypes.shape({
             content: PropTypes.string.isRequired,
@@ -37,10 +40,8 @@ class TabList extends React.Component {
                         {this.props.tabs.map(this.renderTab.bind(this))}
                     </ul>
                 </div>
-                <div style={styles.itemListContainer}>
-                    <ul style={styles.itemList} ref="itemList" onScroll={this.onItemListScroll.bind(this)}>
-                        {this.getItems().map(this.renderItem.bind(this))}
-                    </ul>
+                <div style={[styles.itemListContainer, (this.props.loading) ? styles.loaderContainer : null]}>
+                    {this.props.loading ? <Loader />  : this.renderItemList()}
                 </div>
             </div>
         )
@@ -57,6 +58,14 @@ class TabList extends React.Component {
             <li style={tabStyle} onClick={this.onTabClick.bind(this, index)} key={`tab${index}`}>
                 {tabName}
             </li>
+        )
+    }
+
+    renderItemList() {
+        return (
+            <ul style={styles.itemList} ref="itemList" onScroll={this.onItemListScroll.bind(this)}>
+                {this.getItems().map(this.renderItem.bind(this))}
+            </ul>
         )
     }
 
@@ -147,6 +156,9 @@ const styles = {
     },
     'tabItemSelected': {
         backgroundColor: '#FFFFFF',
+    },
+    'loaderContainer': {
+        padding: 20
     },
     'itemListContainer': {
         width: '100%',

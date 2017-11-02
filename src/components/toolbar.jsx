@@ -17,6 +17,7 @@ const countyShape = PropTypes.shape({
 class Toolbar extends React.Component {
 
     static propTypes = {
+        loading: PropTypes.bool,
         searchQuery: PropTypes.string,
         favoredSelected: PropTypes.bool,
         selectedCounty: countyShape,
@@ -56,6 +57,7 @@ class Toolbar extends React.Component {
                     showMax={this.props.showMax}
                     onShowMaxChange={this.props.onShowMaxChange}
                     highlight={_.lowerCase(this.props.searchQuery)}
+                    loading={this.props.loading}
                     />
                 </div>
             </div>

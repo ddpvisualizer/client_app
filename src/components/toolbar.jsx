@@ -3,7 +3,7 @@ import Radium from 'radium'
 import PropTypes from 'prop-types'
 
 import Search from './toolbar-core/search.jsx'
-import TabList from './toolbar-core/tabs.jsx'
+import TabList from './toolbar-core/tab-list.jsx'
 import stateCodes from '../libs/state-codes.js'
 
 const countyShape = PropTypes.shape({
@@ -37,7 +37,7 @@ class Toolbar extends React.Component {
 
     render() {
         return (
-            <div style={[styles.base]}>
+            <div style={[styles.toolbar]}>
                 <div>
                     <Search
                         value={this.props.searchQuery}
@@ -102,9 +102,8 @@ class Toolbar extends React.Component {
 }
 
 const styles = {
-    base: {
-        backgroundColor: 'white',
-        width: 300
+    toolbar: {
+        backgroundColor: 'white'
     }
 }
 

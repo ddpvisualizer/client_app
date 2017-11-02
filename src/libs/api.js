@@ -13,7 +13,7 @@ function compareStrings(string1, string2) {
 }
 
 export default {
-    getCounty: (fips) => {
+    getCounty(fips) {
         return axios.get(`${API_SERVER}/get-county`, {
             params: { fips }
         }).then(result => result.data)
@@ -26,10 +26,10 @@ export default {
             }))
     },
 
-    putFavored(fips, value) {
+    putFavored(fips, favored) {
         return axios.put(`${API_SERVER}/put-favored`, {
-            fips: fips,
-            favored: value
-        })
+            fips,
+            favored
+        }).then(() => ({fips, favored}))
     }
 }

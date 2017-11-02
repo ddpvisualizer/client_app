@@ -23,10 +23,10 @@ export default {
         }
     },
 
-    selectCounty(county) {
+    selectCounty(fips) {
         return {
             type: 'SELECT_COUNTY',
-            payload: county
+            payload: API.getCounty(fips)
         }
     },
 

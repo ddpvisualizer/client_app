@@ -29,7 +29,7 @@ class TabList extends React.Component {
         items: [{content: 'item1'}, {content: 'item2', icon: 'heart'}, {content: 'item3'}],
         selectedTabIndex: 0,
         selectedItemIndex: 0,
-        showMax: 10
+        showMax: 40
     }
 
     render() {
@@ -62,11 +62,11 @@ class TabList extends React.Component {
     }
 
     renderItemList() {
-        return (
+        return (this.props.items.length) ? (
             <ul style={styles.itemList} ref="itemList" onScroll={this.onItemListScroll.bind(this)}>
                 {this.getItems().map(this.renderItem.bind(this))}
             </ul>
-        )
+        ) : <div style={styles.nothingFound}>Nothing found</div>
     }
 
     renderItem(item, index) {
@@ -105,7 +105,7 @@ class TabList extends React.Component {
         let scrolledToBottom = (itemListNode.scrollTop + itemListNode.offsetHeight >= itemListNode.scrollHeight);
 
         if(scrolledToBottom && this.props.onShowMaxChange) {
-            this.props.onShowMaxChange(this.props.showMax + 10)
+            this.props.onShowMaxChange(this.props.showMax + 20)
         }
     }
 
@@ -169,7 +169,7 @@ const styles = {
         listStyleType: 'none',
         padding: 0,
         margin: 0,
-        height: 300,
+        height: 1000,
         borderWidth: 1,
         borderColor: 'lightgrey',
         borderStyle: 'solid',
@@ -195,6 +195,10 @@ const styles = {
         color: '#DC143C',
         position: 'absolute',
         right: 10
+    },
+    nothingFound: {
+        textAlign: 'center',
+        marginTop: 30
     }
 }
 

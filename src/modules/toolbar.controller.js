@@ -14,7 +14,7 @@ const mapStateToProps = ({toolbar}) => ({
     onSearchChange: searchQuery => store.dispatch(ToolbarActions.updateSearch(searchQuery)),
     onAllCountiesSelected: () => store.dispatch(ToolbarActions.selectAllCounties()),
     onFavoredCountiesSelected: () => store.dispatch(ToolbarActions.selectFavoredConties()),
-    onCountySelected: county => store.dispatch(ToolbarActions.selectCounty(county)),
+    onCountySelected: county => store.dispatch(ToolbarActions.selectCounty(county.fips)),
     onShowMaxChange: max => store.dispatch(ToolbarActions.showMax(max))
 })
 

@@ -11,7 +11,7 @@ class ToolbarReducer extends Reducer {
             favoredSelected: false,
             counties: [],
             selectedCounty: {},
-            showMax: 20
+            showMax: 40
         }
     }
 
@@ -22,14 +22,29 @@ class ToolbarReducer extends Reducer {
             'UPDATE_SEARCH': this.onSearchUpdated,
             'SELECT_FAVORED_COUNTIES': this.onFavoredSelected,
             'SELECT_ALL_COUNTIES': this.onAllSelected,
-            'SELECT_COUNTY': this.onCountySelected,
-            'SHOW_MAX': this.onShowMax
+            'SELECT_COUNTY_FULFILLED': this.onCountySelected,
+            'SHOW_MAX': this.onShowMax,
+            'FAVORED_FULFILLED': this.onFavored
         }
     }
 
     onLoading(state) {
         return _.merge({}, state, {
             loading: true
+        })
+    }
+
+    onFavored(state, payload) {
+        return _.merge({}, state, {
+            counties: state.counties.map(county => {
+                if(county.fips == payload.fips) {
+                    return _.merge({}, county, {
+                        favored: payload.favored
+                    })
+                } else {
+                    return county
+                }
+            })
         })
     }
 
@@ -43,22 +58,21 @@ class ToolbarReducer extends Reducer {
     onSearchUpdated(state, payload) {
         return _.merge({}, state, {
             searchQuery: payload,
-            showMax: 20
+            showMax: 40
         })
     }
 
     onFavoredSelected(state) {
-        console.log('favored selected')
         return _.merge({}, state, {
             favoredSelected: true,
-            showMax: 20
+            showMax: 40
         })
     }
 
     onAllSelected(state) {
         return _.merge({}, state, {
             favoredSelected: false,
-            showMax: 20
+            showMax: 40
         })
     }
 

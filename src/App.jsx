@@ -11,11 +11,11 @@ class App extends React.Component {
             <Radium.StyleRoot>
             <div>
                 <h1 style={{textAlign: 'center'}}>DDP Visualizer</h1>
-                <div style={styles.app}>
-                    <div style={styles.toolbar}>
+                <div style={styles.app} className="row">
+                    <div className="col-md-3">
                         <ToolbarController />
                     </div>
-                    <div style={styles.visualizer}>
+                    <div style={styles.visualizer} className="col-md-9">
                         <VisualizerController />
                     </div>
                 </div>
@@ -29,22 +29,14 @@ const styles = {
     app: {
         position: 'relative',
         margin: '50px auto',
-        width: '90%',
         borderWidth: 1,
         borderStyle: 'solid',
         borderColor: 'grey',
         padding: 10,
         minHeight: 1110
     },
-    toolbar: {
-        float: 'left',
-        display: 'inline-block',
-        width: 300
-    },
     visualizer: {
         paddingLeft: 30,
-        display: 'inline-block',
-        width: '80%'
     }
 };
 
